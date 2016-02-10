@@ -1,7 +1,7 @@
 {
   "name": "b9-debug",
   "description": "Logging and inspecting for debugging b9 slack bot.",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "author": "Mike Helgeson <mike.helgeson+b9@gmail.com>",
   "contributors": [],
   "license": "MIT",
@@ -18,7 +18,6 @@
     "mocha": "^2.2.5",
     "b9": "1.x"
   },
-  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "test": "istanbul cover -x test.js _mocha -- -R spec test.js"
