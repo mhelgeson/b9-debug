@@ -1,0 +1,26 @@
+{
+  "name": "b9-debug",
+  "description": "Logging and inspecting for debugging b9 slack bot.",
+  "version": "0.0.0",
+  "author": "Mike Helgeson <mike.helgeson+b9@gmail.com>",
+  "contributors": [],
+  "license": "MIT",
+  "repository": "https://github.com/mhelgeson/b9-debug",
+  "keywords": [
+    "slack",
+    "bot",
+    "b9"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "coveralls": "^2.11.6",
+    "istanbul": "^0.4.2",
+    "mocha": "^2.2.5",
+    "b9": "1.x"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "istanbul cover -x test.js _mocha -- -R spec test.js"
+  }
+}
