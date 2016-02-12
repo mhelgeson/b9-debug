@@ -2,12 +2,10 @@ module.exports = function( b9 ){
 
   // write all events to the console
   b9.on('rtm.send', function( msg ){
-    process.stdout.write('send: '+ JSON.stringify( msg ) );
     console.log('send: '+ JSON.stringify( msg ) );
   });
 
   b9.on('rtm.read', function( msg ){
-    process.stdout.write('read: '+ JSON.stringify( msg ) );
     console.log('read: '+ JSON.stringify( msg ) );
   });
 
