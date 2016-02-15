@@ -1,13 +1,16 @@
 var assert = require('assert');
 var B9 = require('b9');
+var b9_debug = require('./index');
 
 describe('src/index', function(){
 
-  var bot = new B9({ package:false });
-  bot.self.id = 'UB9M3';
-  bot.install( require('./index') );
+  var bot;
 
   it('registers `inspect` command',function(){
+
+    bot = new B9({ package:false });
+    bot.self.id = 'UB9M3';
+    bot.install( b9_debug );
 
     // check the help command is defined
     simulate('message','help inspect',function(txt){
@@ -32,11 +35,16 @@ describe('src/index', function(){
   });
 
   it('writes send/read traffic to console',function(){
-    var console_log = console.log, logged = '';
-    // hijack `console.log`
-    console.log = function( str ){
-      logged += ([]).join.call( arguments, ' ');
-    };
+
+    var logged;
+    bot = new B9({
+      package:false,
+      // hijack logging output
+      debug_log: function( str ){
+        logged += ([]).join.call( arguments, ' ');
+      }
+    });
+    bot.install( b9_debug );
 
     logged = '';
     simulate('rtm.send','hello');
@@ -46,8 +54,6 @@ describe('src/index', function(){
     simulate('rtm.read','goodbye');
     assert.equal( logged, 'read: {"text":"goodbye","channel":"D"}' );
 
-    // restore `console.log`
-    console.log = console_log;
   });
 
   // simulate on event

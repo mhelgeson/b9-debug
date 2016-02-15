@@ -1,12 +1,21 @@
 module.exports = function( b9 ){
 
+  // if option is undefined, set default
+  if ( b9._debug_log == null ){
+    b9._debug_log = console.log;
+  }
+
   // write all events to the console
   b9.on('rtm.send', function( msg ){
-    console.log('send: '+ JSON.stringify( msg ) );
+    if ( b9._debug_log ){
+      b9._debug_log('send: '+ JSON.stringify( msg ) );
+    }
   });
 
   b9.on('rtm.read', function( msg ){
-    console.log('read: '+ JSON.stringify( msg ) );
+    if ( b9._debug_log ){
+      b9._debug_log('read: '+ JSON.stringify( msg ) );
+    }
   });
 
   // allow inspection of the slack instance, from slack
