@@ -16,7 +16,7 @@ Sends emitted json to `console.log`.
 
 ## Commands
 
-#### `debug [prop]`
+#### `inspect [prop]`
 Inspect properties of the `b9` instance, from within slack. Accepts deeply
 namespaced properties and bracket notation.
 

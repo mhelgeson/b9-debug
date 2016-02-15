@@ -7,24 +7,25 @@ describe('src/index', function(){
   bot.self.id = 'UB9M3';
   bot.install( require('./index') );
 
-  it('registers a `debug` command',function(){
+  it('registers `inspect` command',function(){
 
     // check the help command is defined
-    simulate('message','help debug',function(txt){
-      assert.equal( /debug/.test( txt ), true );
+    simulate('message','help inspect',function(txt){
+      assert.equal( /Command not found/.test( txt ), false );
+      assert.equal( /inspect/.test( txt ), true );
     });
 
     // call the command to inspect instance
-    simulate('message','debug self.id',function(txt){
+    simulate('message','inspect self.id',function(txt){
       assert.equal( txt, '```"UB9M3"```' );
     });
 
     // call the command on undefined prop
-    simulate('message','debug self[0]',function(txt){
+    simulate('message','inspect self[0]',function(txt){
       assert.equal( txt, '```undefined```' );
     });
 
-    simulate('message','debug',function(txt){
+    simulate('message','inspect',function(txt){
       assert.equal( txt, '```'+ JSON.stringify( bot, null, "  ") +'```' );
     });
 

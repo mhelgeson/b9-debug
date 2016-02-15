@@ -11,7 +11,7 @@ module.exports = function( b9 ){
 
   // allow inspection of the slack instance, from slack
   b9.command(
-    'debug [prop]',
+    'inspect [prop]',
     'Print json encoding of a property, for debugging.',
     function( msg, reply ){
       var val = b9;
