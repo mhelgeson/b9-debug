@@ -34,7 +34,20 @@ module.exports = function( b9 ){
             return ( val = val[ key ] ) ? true : false;
           });
       }
-      reply('```'+ JSON.stringify( val, null, "  ") +'```');
+      if ( typeof val === 'undefined' ){
+        val = 'undefined';
+      }
+      else {
+        val = JSON.stringify( val, null, "  ")
+      }
+      // https://api.slack.com/methods/files.upload
+      b9.post('files.upload',{
+        title: msg.text,
+        channels: msg.channel,
+        filename: 'inspect.json',
+        filetype: 'javascript',
+        content: val
+      });
     }
   );
 

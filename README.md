@@ -23,7 +23,7 @@ Sends emitted json to `debug_log`.
 
 #### `inspect [prop]`
 Inspect properties of the `b9` instance, from within slack. Accepts deeply
-namespaced properties and bracket notation.
+namespaced properties and bracket notation. Result is posted as a JSON file snippet.
 
 ## Warning
 
