@@ -21,14 +21,13 @@ describe('src/index', function(){
     // stub out the api post
     bot.post = function( method, data ){
       assert.equal( method, 'files.upload' );
-      assert.equal( data.title, 'inspect' );
       assert.equal( data.content, JSON.stringify( bot, null, "  ") );
       posted = true;
     };
     // call the command on undefined prop
     simulate('message','inspect');
     // make sure the assertions ran
-    assert.equal( posted, true );
+    assert.equal( posted, true, 'api post was not sent');
   });
 
   it('traverses namespaced properties',function(){
@@ -36,14 +35,13 @@ describe('src/index', function(){
     // stub out the api post
     bot.post = function( method, data ){
       assert.equal( method, 'files.upload' );
-      assert.equal( data.title, 'inspect self.id' );
       assert.equal( data.content, '"UB9M3"' );
       posted = true;
     };
     // call the command to inspect instance
     simulate('message','inspect self.id');
     // make sure the assertions ran
-    assert.equal( posted, true );
+    assert.equal( posted, true, 'api post was not sent' );
   });
 
   it('traverses bracket notation properties',function(){
@@ -51,26 +49,24 @@ describe('src/index', function(){
     // stub out the api post
     bot.post = function( method, data ){
       assert.equal( method, 'files.upload' );
-      assert.equal( data.title, 'inspect self["id"]' );
       assert.equal( data.content, '"UB9M3"' );
       posted = true;
     };
     simulate('message','inspect self["id"]');
     // make sure the assertions ran
-    assert.equal( posted, true );
+    assert.equal( posted, true, 'api post was not sent' );
   });
 
   it('handles undefined properties',function(){
     var posted = false;
     bot.post = function( method, data ){
       assert.equal( method, 'files.upload' );
-      assert.equal( data.title, 'inspect self.less' );
       assert.equal( data.content, 'undefined' );
       posted = true;
     };
     simulate('message','inspect self.less');
     // make sure the assertions ran
-    assert.equal( posted, true );
+    assert.equal( posted, true, 'api post was not sent' );
   });
 
   it('writes send traffic to log',function(){
@@ -81,7 +77,7 @@ describe('src/index', function(){
     };
     simulate('rtm.send','hello');
     // make sure the assertions ran
-    assert.equal( logged, true );
+    assert.equal( logged, true, 'message was not logged' );
   });
 
   it('writes read traffic to log',function(){
@@ -92,7 +88,7 @@ describe('src/index', function(){
     };
     simulate('rtm.read','goodbye');
     // make sure the assertions ran
-    assert.equal( logged, true );
+    assert.equal( logged, true, 'message was not logged' );
   });
 
   // simulate on event

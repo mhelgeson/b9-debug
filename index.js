@@ -33,8 +33,8 @@ module.exports = function( b9 ){
             // traverse namespace and assign, continue or break
             return ( val = val[ key ] ) ? true : false;
           });
-        b9.debug( msg.channel, val );
       }
+      b9.debug( msg.channel, val );
     }
   );
 
