@@ -33,22 +33,28 @@ module.exports = function( b9 ){
             // traverse namespace and assign, continue or break
             return ( val = val[ key ] ) ? true : false;
           });
+        b9.debug( msg.channel, val );
       }
-      if ( typeof val === 'undefined' ){
-        val = 'undefined';
-      }
-      else {
-        val = JSON.stringify( val, null, "  ")
-      }
-      // https://api.slack.com/methods/files.upload
-      b9.post('files.upload',{
-        title: msg.text,
-        channels: msg.channel,
-        filename: 'inspect.json',
-        filetype: 'javascript',
-        content: val
-      });
     }
   );
+
+  var num = 1;
+
+  // logs a value as an attachment...
+  b9.debug = function( channel, value ){
+    if ( typeof value === 'undefined' ){
+      value = 'undefined';
+    }
+    else {
+      value = JSON.stringify( value, null, "  ")
+    }
+    // https://api.slack.com/methods/files.upload
+    b9.post('files.upload',{
+      channels: channel,
+      filename: 'debug_'+( num++ )+'.json',
+      filetype: 'javascript',
+      content: value
+    });
+  };
 
 };

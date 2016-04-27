@@ -11,6 +11,17 @@ A [b9](https://github.com/mhelgeson/b9) slack bot plugin, which enables logging 
 - **`debug_log`** *`{Function}`* `console.log` <br />
 Function which receives json emitted by listeners. Set to `false` to disable.
 
+## Methods
+
+#### `b9.debug( channel, value )`
+Posts a formatted JSON attachment, to the provided channel. Useful for logging output during development.
+
+- **`channel`** *`{String}`* <br />
+The `id` of the destination channel.
+
+- **`value`** *`{Any}`* <br />
+The value to log.
+
 ## Listeners
 
 #### `"rtm.send"`
