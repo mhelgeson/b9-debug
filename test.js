@@ -91,6 +91,26 @@ describe('src/index', function(){
     assert.equal( logged, true, 'message was not logged' );
   });
 
+  it('logging can be disabled',function(){
+    bot = new B9({
+      package:false,
+      debug_log: false
+    });
+    bot.self.id = 'UB9M3';
+    bot.install( b9_debug );
+    var logged = false;
+    var _console_log_ = console.log;
+    console.log = function( str ){
+      _console_log_.apply( this, arguments );
+      logged = true;
+    };
+    simulate('rtm.send','hello');
+    simulate('rtm.read','goodbye');
+
+    // make sure the assertions ran
+    assert.equal( logged, false, 'message was logged' );
+  });
+
   // simulate on event
   function simulate ( type, str, reply ){
     bot.emit( type, {
