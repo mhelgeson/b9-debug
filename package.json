@@ -1,7 +1,7 @@
 {
   "name": "b9-debug",
   "description": "Logging and inspecting for debugging b9 slack bot.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Mike Helgeson <mike.helgeson+b9@gmail.com>",
   "contributors": [],
   "license": "MIT",
